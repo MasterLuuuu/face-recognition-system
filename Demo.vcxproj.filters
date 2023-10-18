@@ -1,69 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppAllocator.cpp">
+    <ClCompile Include="LAppInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppDefine.cpp">
+    <ClCompile Include="LAppAllocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppDelegate.cpp">
+    <ClCompile Include="LAppDefine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppLive2DManager.cpp">
+    <ClCompile Include="LAppDelegate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppModel.cpp">
+    <ClCompile Include="LAppLive2DManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppPal.cpp">
+    <ClCompile Include="LAppModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppSprite.cpp">
+    <ClCompile Include="LAppPal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppTextureManager.cpp">
+    <ClCompile Include="LAppSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppView.cpp">
+    <ClCompile Include="LAppTextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\main.cpp">
+    <ClCompile Include="LAppView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\TouchManager.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TouchManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppAllocator.hpp">
+    <ClInclude Include="LAppInterface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppDefine.hpp">
+    <ClInclude Include="LAppAllocator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppDelegate.hpp">
+    <ClInclude Include="LAppDefine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppLive2DManager.hpp">
+    <ClInclude Include="LAppDelegate.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppModel.hpp">
+    <ClInclude Include="LAppLive2DManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppPal.hpp">
+    <ClInclude Include="LAppModel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppSprite.hpp">
+    <ClInclude Include="LAppPal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppTextureManager.hpp">
+    <ClInclude Include="LAppSprite.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppView.hpp">
+    <ClInclude Include="LAppTextureManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\TouchManager.hpp">
+    <ClInclude Include="LAppView.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TouchManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

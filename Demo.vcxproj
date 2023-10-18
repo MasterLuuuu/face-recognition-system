@@ -15,7 +15,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{48646019-56F2-3D96-B1B7-D6FF9140CE9A}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
     <ProjectName>Demo</ProjectName>
@@ -86,7 +86,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message></Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_directory D:/CubismSdkForNative-4-r.1/Samples/D3D11/Demo/proj.d3d11.cmake/../../../../Samples/Resources D:/CubismSdkForNative-4-r.1/Samples/D3D11/Demo/proj.d3d11.cmake/build/proj_msvc2019_x64_mt/bin/Demo/Debug/Resources
 if %errorlevel% neq 0 goto :cmEnd
@@ -141,7 +142,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message></Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_directory D:/CubismSdkForNative-4-r.1/Samples/D3D11/Demo/proj.d3d11.cmake/../../../../Samples/Resources D:/CubismSdkForNative-4-r.1/Samples/D3D11/Demo/proj.d3d11.cmake/build/proj_msvc2019_x64_mt/bin/Demo/Release/Resources
 if %errorlevel% neq 0 goto :cmEnd
@@ -167,27 +169,29 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppAllocator.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppAllocator.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppDefine.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppDefine.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppDelegate.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppDelegate.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppLive2DManager.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppLive2DManager.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppModel.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppModel.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppPal.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppPal.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppSprite.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppSprite.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppTextureManager.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppTextureManager.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppView.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\LAppView.hpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\main.cpp" />
-    <ClCompile Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\TouchManager.cpp" />
-    <ClInclude Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\src\TouchManager.hpp" />
+    <ClCompile Include="LAppAllocator.cpp" />
+    <ClCompile Include="LAppDefine.cpp" />
+    <ClCompile Include="LAppDelegate.cpp" />
+    <ClCompile Include="LAppInterface.cpp" />
+    <ClCompile Include="LAppLive2DManager.cpp" />
+    <ClCompile Include="LAppModel.cpp" />
+    <ClCompile Include="LAppPal.cpp" />
+    <ClCompile Include="LAppSprite.cpp" />
+    <ClCompile Include="LAppTextureManager.cpp" />
+    <ClCompile Include="LAppView.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="TouchManager.cpp" />
+    <ClInclude Include="LAppAllocator.hpp" />
+    <ClInclude Include="LAppDefine.hpp" />
+    <ClInclude Include="LAppDelegate.hpp" />
+    <ClInclude Include="LAppInterface.hpp" />
+    <ClInclude Include="LAppLive2DManager.hpp" />
+    <ClInclude Include="LAppModel.hpp" />
+    <ClInclude Include="LAppPal.hpp" />
+    <ClInclude Include="LAppSprite.hpp" />
+    <ClInclude Include="LAppTextureManager.hpp" />
+    <ClInclude Include="LAppView.hpp" />
+    <ClInclude Include="TouchManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\build\proj_msvc2019_x64_mt\Framework\Framework.vcxproj">
