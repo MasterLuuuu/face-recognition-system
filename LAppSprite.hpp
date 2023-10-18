@@ -74,14 +74,6 @@ public:
     void RenderImmidiate(int width, int height, ID3D11ShaderResourceView* resourceView) const;
 
     /**
-     * @brief 命中检查
-     *
-     * @param[in]       pointX    x坐标
-     * @param[in]       pointY    y坐标
-     */
-    bool IsHit(float pointX, float pointY) const;
-
-    /**
      * @brief 重新调整大小
      *
      * @param[in]       x            x坐标

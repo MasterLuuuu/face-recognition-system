@@ -180,7 +180,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="LAppTextureManager.cpp" />
     <ClCompile Include="LAppView.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TouchManager.cpp" />
     <ClInclude Include="LAppAllocator.hpp" />
     <ClInclude Include="LAppDefine.hpp" />
     <ClInclude Include="LAppDelegate.hpp" />
@@ -191,7 +190,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="LAppSprite.hpp" />
     <ClInclude Include="LAppTextureManager.hpp" />
     <ClInclude Include="LAppView.hpp" />
-    <ClInclude Include="TouchManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\CubismSdkForNative-4-r.1\Samples\D3D11\Demo\proj.d3d11.cmake\build\proj_msvc2019_x64_mt\Framework\Framework.vcxproj">

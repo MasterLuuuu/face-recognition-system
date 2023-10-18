@@ -69,7 +69,6 @@ LAppModel::~LAppModel()
     _renderBuffer.DestroyOffscreenFrame();
 
     ReleaseMotions();
-    ReleaseExpressions();
 
     for (csmInt32 i = 0; i < _modelSetting->GetMotionGroupCount(); i++)
     {
@@ -77,7 +76,7 @@ LAppModel::~LAppModel()
         ReleaseMotionGroup(group);
     }
 
-    // テクスチャの開放
+    // 打开纹理
     for (csmUint32 i = 0; i < _bindTextureId.GetSize(); i++)
     {
         LAppDelegate::GetInstance()->GetTextureManager()->ReleaseTexture(_bindTextureId[i]);
@@ -314,16 +313,6 @@ void LAppModel::ReleaseMotions()
     _motions.Clear();
 }
 
-void LAppModel::ReleaseExpressions()
-{
-    for (csmMap<csmString, ACubismMotion*>::const_iterator iter = _expressions.Begin(); iter != _expressions.End(); ++iter)
-    {
-        ACubismMotion::Delete(iter->Second);
-    }
-
-    _expressions.Clear();
-}
-
 void LAppModel::Update()
 {
     const csmFloat32 deltaTimeSeconds = LAppPal::GetDeltaTime();
@@ -531,58 +520,6 @@ csmBool LAppModel::HitTest(const csmChar* hitAreaName, csmFloat32 x, csmFloat32 
     return false; // 存在しない場合はfalse
 }
 
-void LAppModel::SetExpression(const csmChar* expressionID)
-{
-    ACubismMotion* motion = _expressions[expressionID];
-    if (_debugMode)
-    {
-        LAppPal::PrintLog("[APP]expression: [%s]", expressionID);
-    }
-
-    if (motion != NULL)
-    {
-        _expressionManager->StartMotionPriority(motion, false, PriorityForce);
-    }
-    else
-    {
-        if (_debugMode)
-        {
-            LAppPal::PrintLog("[APP]expression[%s] is null ", expressionID);
-        }
-    }
-}
-
-void LAppModel::SetRandomExpression()
-{
-    if (_expressions.GetSize() == 0)
-    {
-        return;
-    }
-
-    csmInt32 no = rand() % _expressions.GetSize();
-    csmMap<csmString, ACubismMotion*>::const_iterator map_ite;
-    csmInt32 i = 0;
-    for (map_ite = _expressions.Begin(); map_ite != _expressions.End(); map_ite++)
-    {
-        if (i == no)
-        {
-            csmString name = (*map_ite).First;
-            SetExpression(name.GetRawString());
-            return;
-        }
-        i++;
-    }
-}
-
-void LAppModel::ReloadRenderer()
-{
-    DeleteRenderer();
-
-    CreateRenderer();
-
-    SetupTextures();
-}
-
 void LAppModel::SetupTextures()
 {
 #ifdef PREMULTIPLIED_ALPHA_ENABLE
@@ -627,12 +564,6 @@ void LAppModel::SetupTextures()
     // premultであるなら設定
     GetRenderer<Rendering::CubismRenderer_D3D11>()->IsPremultipliedAlpha(isPreMult);
 }
-
-void LAppModel::MotionEventFired(const csmString& eventValue)
-{
-    CubismLogInfo("%s is fired on LAppModel!!", eventValue.GetRawString());
-}
-
 
 Csm::Rendering::CubismOffscreenFrame_D3D11& LAppModel::GetRenderBuffer()
 {

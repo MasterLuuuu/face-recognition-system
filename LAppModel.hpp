@@ -32,12 +32,6 @@ public:
     void LoadAssets(const Csm::csmChar* dir, const  Csm::csmChar* fileName);
 
     /**
-     * @brief 重建渲染器
-     *
-     */
-    void ReloadRenderer();
-
-    /**
      * @brief   更新模型的过程     根据模型参数确定绘图状态
      *
      */
@@ -70,25 +64,6 @@ public:
      * @return                                  返回已开始运动的标识号     用于确定单独的运动是否结束的IsFinished（）的参数。无法开始时为“-1”
      */
     Csm::CubismMotionQueueEntryHandle StartRandomMotion(const Csm::csmChar* group, Csm::csmInt32 priority, Csm::ACubismMotion::FinishedMotionCallback onFinishedMotionHandler = NULL);
-
-    /**
-     * @brief   设置参数指定的表情运动
-     *
-     * @param   expressionID    表情运动ID
-     */
-    void SetExpression(const Csm::csmChar* expressionID);
-
-    /**
-     * @brief   设置随机选择的表情运动
-     *
-     */
-    void SetRandomExpression();
-
-    /**
-    * @brief   接受活动的开火
-    *
-    */
-    virtual void MotionEventFired(const Live2D::Cubism::Framework::csmString& eventValue);
 
     /**
      * @brief    命中判定测试
@@ -146,7 +121,7 @@ private:
 
     /**
      * @brief   从组名中一次性释放运动数据
-     *          从内部的模型设置中获取运动数据的名称
+     *    
      *
      * @param[in]   group  运动数据组名称
      */
@@ -156,11 +131,6 @@ private:
     * @brief 释放所有运动数据
     */
     void ReleaseMotions();
-
-    /**
-    * @brief 释放所有表情数据
-    */
-    void ReleaseExpressions();
 
     Csm::ICubismModelSetting* _modelSetting; // 模型设置信息
     Csm::csmString _modelHomeDir; // 模型设置所在的目录

@@ -32,7 +32,7 @@ public:
     struct TextureInfo
     {
         Csm::csmUint64 id;      // 纹理标识
-        int width;              ///< 横幅
+        int width;              ///< 宽度
         int height;             ///< 高度
         std::string fileName;   // 文件名
     };
@@ -66,7 +66,7 @@ public:
      * @brief 图像读取
      *
      * @param[in]   fileName    导入的图像文件路径名
-     * @param[in]   isPreMult   加载时像素的α计算并重新存储值基本上可以为假
+     * @param[in]   isPreMult   加载时像素的计算并重新存储值基本上可以为假
      * @param[in]   maxSize     纹理的最大尺寸为0时，采用图像的宽度和高度
      * @return 图像信息   读取失败时返回空值
      */
@@ -88,14 +88,6 @@ public:
     void ReleaseTexture(Csm::csmUint64 textureId);
 
     /**
-    * @brief 图像释放
-    *
-    * 释放指定名称的图像
-    * @param[in] fileName  要释放的图像文件路径名
-    **/
-    void ReleaseTexture(std::string fileName);
-
-    /**
      * @brief 获取纹理采样器
      *
      * @param   textureId[in]       指定想取得纹理ID CreatextureFromGnfFile中返回的info的即可
@@ -103,14 +95,6 @@ public:
      * @return  如果纹理存在，则返回真值
      */
     bool GetTexture(Csm::csmUint64 textureId, ID3D11ShaderResourceView*& retTexture) const;
-
-    /**
-     * @brief 从文件名获得纹理信息
-     *
-     * @param   fileName[in]       要获取的纹理文件名
-     * @return  如果纹理存在，则返回TextureInfo
-     */
-    TextureInfo* GetTextureInfoByName(std::string& fileName) const;
 
     /**
      * @brief 从文件名获得纹理信息

@@ -119,15 +119,7 @@ void LAppLive2DManager::OnTap(csmFloat32 x, csmFloat32 y)
 
     for (csmUint32 i = 0; i < _models.GetSize(); i++)
     {
-        if (_models[i]->HitTest(HitAreaNameHead, x, y))
-        {
-            if (DebugLogEnable)
-            {
-                LAppPal::PrintLog("[APP]hit area: [%s]", HitAreaNameHead);
-            }
-            _models[i]->SetRandomExpression();
-        }
-        else if (_models[i]->HitTest(HitAreaNameBody, x, y))
+        if (_models[i]->HitTest(HitAreaNameBody, x, y))
         {
             if (DebugLogEnable)
             {

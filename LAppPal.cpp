@@ -114,19 +114,6 @@ void LAppPal::PrintMessage(const csmChar* message)
     PrintLog("%s", message);
 }
 
-void LAppPal::CoordinateFullScreenToWindow(float clientWidth, float clientHeight, float fullScreenX, float fullScreenY, float& retWindowX, float& retWindowY)
-{
-    retWindowX = retWindowY = 0.0f;
-
-    const float width = static_cast<float>(clientWidth);
-    const float height = static_cast<float>(clientHeight);
-
-    if (width == 0.0f || height == 0.0f) return;
-
-    retWindowX = (fullScreenX + width) * 0.5f;
-    retWindowY = (-fullScreenY + height) * 0.5f;
-}
-
 void LAppPal::CoordinateWindowToFullScreen(float clientWidth, float clientHeight, float windowX, float windowY, float& retFullScreenX, float& retFullScreenY)
 {
     retFullScreenX = retFullScreenY = 0.0f;

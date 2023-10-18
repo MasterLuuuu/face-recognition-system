@@ -291,25 +291,6 @@ void LAppSprite::RenderImmidiate(int width, int height, ID3D11ShaderResourceView
     }
 }
 
-bool LAppSprite::IsHit(float pointX, float pointY) const
-{
-    // フルスクリーン座標に変換
-    float coordX = 0.0f, coordY = 0.0f;
-    int clientWidth = 0, clientHeight = 0;
-    LAppDelegate::GetClientSize(clientWidth, clientHeight);
-    LAppPal::CoordinateWindowToFullScreen(static_cast<float>(clientWidth), static_cast<float>(clientHeight), pointX, pointY, coordX, coordY);
-
-    if(clientWidth==0 || clientHeight==0)
-    {// この際はヒットしない
-        return false;
-    }
-
-    coordX = (clientWidth+coordX)/(2.0f*clientWidth) * clientWidth;
-    coordY = (clientHeight+coordY)/(2.0f*clientHeight) * clientHeight;
-
-    return (coordX >= _rect.left && coordX <= _rect.right && coordY <= _rect.up && coordY >= _rect.down);
-}
-
 void LAppSprite::ResetRect(float x, float y, float width, float height)
 {
     _rect.left = (x - width * 0.5f);

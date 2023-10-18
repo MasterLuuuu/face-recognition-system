@@ -80,13 +80,6 @@ public:
     static void PrintMessage(const Csm::csmChar* message);
 
     /**
-     * @brief   坐标变换
-     *          全屏 LT(-bufferX, bufferY) RB(bufferX, -bufferY) → 窗口鼠标 LT(0, 0) RB(bufferX, bufferY)
-     *          未被外部调用
-     */
-    static void CoordinateFullScreenToWindow(float clientWidth, float clientHeight, float fullScreenX, float fullScreenY, float& retWindowX, float& retWindowY);
-
-    /**
      * @brief    坐标变换
      *          窗口鼠标 LT(0, 0) RB(bufferX, bufferY) → 全屏 LT(-bufferX, bufferY) RB(bufferX, -bufferY)
      */

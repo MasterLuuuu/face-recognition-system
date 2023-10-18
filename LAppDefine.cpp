@@ -34,7 +34,6 @@ namespace LAppDefine {
     // 放置模型的目录名数组
     // 使目录名与model3.json的名字一致
     const csmChar* ModelDir[] = {
-        "Rice",
         "jocker"
     };
     const csmInt32 ModelDirSize = sizeof(ModelDir) / sizeof(const csmChar*);

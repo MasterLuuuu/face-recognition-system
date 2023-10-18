@@ -246,50 +246,6 @@ void LAppTextureManager::ReleaseTexture(Csm::csmUint64 textureId)
     }
 }
 
-void LAppTextureManager::ReleaseTexture(std::string fileName)
-{
-    for (Csm::csmUint32 i = 0; i < _texturesInfo.GetSize(); i++)
-    {
-        if (_texturesInfo[i]->fileName == fileName)
-        {
-            // info除去
-            delete _texturesInfo[i];
-
-            // 実体除去
-            if (_textureView[i])
-            {
-                _textureView[i]->Release();
-                _textureView[i] = NULL;
-            }
-            if (_textures[i])
-            {
-                _textures[i]->Release();
-                _textures[i] = NULL;
-            }
-
-            // 器除去
-            _texturesInfo.Remove(i);
-            _textures.Remove(i);
-            _textureView.Remove(i);
-
-            break;
-        }
-    }
-
-    if (_textureView.GetSize() == 0)
-    {
-        _textureView.Clear();
-    }
-    if (_textures.GetSize() == 0)
-    {
-        _textures.Clear();
-    }
-    if (_texturesInfo.GetSize() == 0)
-    {
-        _texturesInfo.Clear();
-    }
-}
-
 bool LAppTextureManager::GetTexture(Csm::csmUint64 textureId, ID3D11ShaderResourceView*& retTexture) const
 {
     retTexture = NULL;
@@ -303,19 +259,6 @@ bool LAppTextureManager::GetTexture(Csm::csmUint64 textureId, ID3D11ShaderResour
     }
 
     return false;
-}
-
-LAppTextureManager::TextureInfo* LAppTextureManager::GetTextureInfoByName(std::string& fileName) const
-{
-    for (Csm::csmUint32 i = 0; i < _texturesInfo.GetSize(); i++)
-    {
-        if (_texturesInfo[i]->fileName == fileName)
-        {
-            return _texturesInfo[i];
-        }
-    }
-
-    return NULL;
 }
 
 LAppTextureManager::TextureInfo* LAppTextureManager::GetTextureInfoById(Csm::csmUint64 textureId) const

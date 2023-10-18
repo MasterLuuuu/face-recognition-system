@@ -786,23 +786,23 @@ LRESULT WINAPI LAppDelegate::MsgProc(HWND wnd, UINT msg, WPARAM wParam, LPARAM l
 {
     switch (msg)
     {
-    case WM_DESTROY:    // 終了
+    case WM_DESTROY:    // 终止
         PostQuitMessage(0);
         return 0;
 
-    case WM_PAINT:  // ウインドウ描画時
+    case WM_PAINT:  // 窗口绘制
         ValidateRect(wnd, NULL);
         return 0;
 
-    case WM_SIZE:   // ウィンドウサイズ変更
+    case WM_SIZE:   // 调整窗口大小
         if(s_instance != NULL && s_instance->_view!=NULL && s_instance->_device && s_instance->_deviceStep!=DeviceStep_Lost)
-        {// _device作成前にCreateWindowをやった時もここに来るので、_deviceのNullチェックは必須
-            // Resize指示を出す
+        {//在创建device之前，在创建CreateWindow时也会来这里，所以必须对设备进行空值检查
+            // 发出调整指示
             s_instance->_deviceStep = DeviceStep_Size;
         }
         return 0;
 
-    case WM_LBUTTONDOWN:
+    /*case WM_LBUTTONDOWN:
         if (s_instance != NULL)
         {
             if (s_instance->_view == NULL)
@@ -858,7 +858,7 @@ LRESULT WINAPI LAppDelegate::MsgProc(HWND wnd, UINT msg, WPARAM wParam, LPARAM l
 
             s_instance->_view->OnTouchesMoved(s_instance->_mouseX, s_instance->_mouseY);
         }
-        return 0;
+        return 0;*/
 
     default:
         break;

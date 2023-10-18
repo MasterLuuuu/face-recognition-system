@@ -13,7 +13,6 @@
 #include "LAppLive2DManager.hpp"
 #include "LAppTextureManager.hpp"
 #include "LAppDefine.hpp"
-#include "TouchManager.hpp"
 #include "LAppSprite.hpp"
 #include "LAppModel.hpp"
 
@@ -31,9 +30,6 @@ LAppView::LAppView():
     _clearColor[1] = 1.0f;
     _clearColor[2] = 1.0f;
     _clearColor[3] = 0.0f;
-
-    // 触摸事件管理
-    _touchManager = new TouchManager();
 
     // 用于将设备坐标转换为屏幕坐标
     _deviceToScreen = new CubismMatrix44();
@@ -99,7 +95,7 @@ void LAppView::Render()
         return;
     }
 
-    // スプライト描画
+    // Sprite绘制
     int width, height;
     LAppDelegate::GetInstance()->GetClientSize(width, height);
 
@@ -119,12 +115,12 @@ void LAppView::Render()
     // Cubism更新・描画
     live2DManager->OnUpdate();
 
-    // 各モデルが持つ描画ターゲットをテクスチャとする場合
+    // 将每个模型的绘制目标作为纹理
     if (_renderTarget == SelectTarget_ModelFrameBuffer && _renderSprite)
     {
         for(csmUint32 i=0; i<live2DManager->GetModelNum(); i++)
         {
-            float alpha = GetSpriteAlpha(i); // サンプルとしてαに適当な差をつける
+            float alpha = GetSpriteAlpha(i); // 作为样本落差
             _renderSprite->SetColor(1.0f, 1.0f, 1.0f, alpha);
 
             LAppModel *model = live2DManager->GetModel(i);
@@ -202,7 +198,7 @@ void LAppView::ResizeSprite()
         return;
     }
 
-    // 描画領域サイズ
+    // 绘图区域大小
     int width, height;
     LAppDelegate::GetInstance()->GetClientSize(width, height);
 
@@ -261,124 +257,54 @@ void LAppView::ResizeSprite()
     }
 }
 
-void LAppView::OnTouchesBegan(float px, float py) const
-{
-    _touchManager->TouchesBegan(px, py);
-}
-
-void LAppView::OnTouchesMoved(float px, float py) const
-{
-    float viewX = this->TransformViewX(_touchManager->GetX());
-    float viewY = this->TransformViewY(_touchManager->GetY());
-
-    _touchManager->TouchesMoved(px, py);
-
-    LAppLive2DManager* live2DManager = LAppLive2DManager::GetInstance();
-    live2DManager->OnDrag(viewX, viewY);
-}
-
-void LAppView::OnTouchesEnded(float px, float py) const
-{
-    // タッチ終了
-    LAppLive2DManager* live2DManager = LAppLive2DManager::GetInstance();
-    live2DManager->OnDrag(0.0f, 0.0f);
-    {
-        int width, height;
-        LAppDelegate::GetInstance()->GetClientSize(width, height);
-
-        // シングルタップ
-        float x = _deviceToScreen->TransformX(px); // 論理座標変換した座標を取得。
-        float y = _deviceToScreen->TransformY(py); // 論理座標変換した座標を取得。
-        if (DebugTouchLogEnable)
-        {
-            LAppPal::PrintLog("[APP]touchesEnded x:%.2f y:%.2f", x, y);
-        }
-        live2DManager->OnTap(x, y);
-
-        // 歯車にタップしたか
-        if (_gear->IsHit(px, py))
-        {
-            live2DManager->NextScene();
-        }
-
-        // 電源ボタンにタップしたか
-        if (_power->IsHit(px, py))
-        {
-            LAppDelegate::GetInstance()->AppEnd();
-        }
-    }
-}
-
-float LAppView::TransformViewX(float deviceX) const
-{
-    float screenX = _deviceToScreen->TransformX(deviceX); // 論理座標変換した座標を取得。
-    return _viewMatrix->InvertTransformX(screenX); // 拡大、縮小、移動後の値。
-}
-
-float LAppView::TransformViewY(float deviceY) const
-{
-    float screenY = _deviceToScreen->TransformY(deviceY); // 論理座標変換した座標を取得。
-    return _viewMatrix->InvertTransformY(screenY); // 拡大、縮小、移動後の値。
-}
-
-float LAppView::TransformScreenX(float deviceX) const
-{
-    return _deviceToScreen->TransformX(deviceX);
-}
-
-float LAppView::TransformScreenY(float deviceY) const
-{
-    return _deviceToScreen->TransformY(deviceY);
-}
-
 void LAppView::PreModelDraw(LAppModel& refModel)
 {
-    // 別のレンダリングターゲットへ向けて描画する場合の使用するフレームバッファ
+    // 用于绘制到其他渲染目标的帧缓冲区
     Csm::Rendering::CubismOffscreenFrame_D3D11* useTarget = NULL;
 
     if (_renderTarget != SelectTarget_None)
-    {// 別のレンダリングターゲットへ向けて描画する場合
+    {// 绘制到其他渲染目标时
 
-        // 使用するターゲット
+        // 要使用的目标
         useTarget = (_renderTarget == SelectTarget_ViewFrameBuffer) ? &_renderBuffer : &refModel.GetRenderBuffer();
 
         if (!useTarget->IsValid())
-        {// 描画ターゲット内部未作成の場合はここで作成
+        {// 绘制目标内部未创建时在此处创建
             int width, height;
             LAppDelegate::GetClientSize(width, height);
 
             if (width != 0 && height != 0)
             {
-                // モデル描画キャンバス
+                // 模型绘图画布
                 useTarget->CreateOffscreenFrame(LAppDelegate::GetInstance()->GetD3dDevice(),
                     static_cast<csmUint32>(width), static_cast<csmUint32>(height));
             }
         }
 
-        // レンダリング開始
+        // 开始渲染
         useTarget->BeginDraw(LAppDelegate::GetInstance()->GetD3dContext());
-        useTarget->Clear(LAppDelegate::GetInstance()->GetD3dContext(), _clearColor[0], _clearColor[1], _clearColor[2], _clearColor[3]); // 背景クリアカラー
+        useTarget->Clear(LAppDelegate::GetInstance()->GetD3dContext(), _clearColor[0], _clearColor[1], _clearColor[2], _clearColor[3]); // 背景清除颜色
     }
 }
 
 void LAppView::PostModelDraw(LAppModel& refModel)
 {
-    // 別のレンダリングターゲットへ向けて描画する場合の使用するフレームバッファ
+    // 用于绘制到其他渲染目标的帧缓冲区
     Csm::Rendering::CubismOffscreenFrame_D3D11* useTarget = NULL;
 
     if (_renderTarget != SelectTarget_None)
-    {// 別のレンダリングターゲットへ向けて描画する場合
+    {// 绘制到其他渲染目标时
 
-        // 使用するターゲット
+        // 要使用的目标
         useTarget = (_renderTarget == SelectTarget_ViewFrameBuffer) ? &_renderBuffer : &refModel.GetRenderBuffer();
 
-        // レンダリング終了
+        // 渲染结束
         useTarget->EndDraw(LAppDelegate::GetInstance()->GetD3dContext());
 
-        // LAppViewの持つフレームバッファを使うなら、スプライトへの描画はここ
+        //如果使用LAppView的帧缓冲区，则在Sprite中绘制
         if (_renderTarget == SelectTarget_ViewFrameBuffer && _renderSprite)
         {
-            // スプライト描画
+            // Sprite绘制
             int width, height;
             LAppDelegate::GetInstance()->GetClientSize(width, height);
 
@@ -407,8 +333,8 @@ void LAppView::DestroyOffscreenFrame()
 
 float LAppView::GetSpriteAlpha(int assign) const
 {
-    // assignの数値に応じて適当に決定
-    float alpha = 0.25f + static_cast<float>(assign) * 0.5f; // サンプルとしてαに適当な差をつける
+    // 根据assign的数值适当地决定
+    float alpha = 0.25f + static_cast<float>(assign) * 0.5f; // 作为样本落差
     if (alpha > 1.0f)
     {
         alpha = 1.0f;

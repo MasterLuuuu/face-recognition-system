@@ -64,59 +64,6 @@ public:
     * @brief 重新调整sprite大小
     */
     void ResizeSprite();
-
-    /**
-    * @brief 被触摸的时候
-    *
-    * @param[in]       pointX            屏幕X坐标
-    * @param[in]       pointY            屏幕Y坐标
-    */
-    void OnTouchesBegan(float pointX, float pointY) const;
-
-    /**
-    * @brief 触摸的时候指针移动
-    *
-    * @param[in]       pointX            屏幕X坐标
-    * @param[in]       pointY            屏幕Y坐标
-    */
-    void OnTouchesMoved(float pointX, float pointY) const;
-
-    /**
-    * @brief 触摸结束时
-    *
-    * @param[in]       pointX            屏幕X坐标
-    * @param[in]       pointY            屏幕Y坐标
-    */
-    void OnTouchesEnded(float pointX, float pointY) const;
-
-    /**
-    * @brief 将X坐标转换为View坐标
-    *
-    * @param[in]       deviceX           设备X坐标
-    */
-    float TransformViewX(float deviceX) const;
-
-    /**
-    * @brief    将Y坐标转换为View坐标
-    *
-    * @param[in]       deviceY           设备Y坐标
-    */
-    float TransformViewY(float deviceY) const;
-
-    /**
-    * @brief 将X坐标转换为Screen坐标
-    *
-    * @param[in]       deviceX            设备X坐标
-    */
-    float TransformScreenX(float deviceX) const;
-
-    /**
-    * @brief 将Y坐标转换为Screen坐标
-    *
-    * @param[in]       deviceY           设备Y坐标
-    */
-    float TransformScreenY(float deviceY) const;
-
     /**
      * @brief   在绘制一个模型之前调用
      */
